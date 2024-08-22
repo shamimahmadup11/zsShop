@@ -15,14 +15,14 @@ const AddToCartProduct = () => {
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${user.token}`
+          'Authorization': `Bearer ${user.token}`,
         },
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        setCartProducts(data.data); // Assuming the data is in the `data` field
+        setCartProducts(data.data);
       } else {
         toast.error('Failed to fetch cart products: ' + data.message);
       }
@@ -35,18 +35,65 @@ const AddToCartProduct = () => {
     fetchCartProducts();
   }, [user]);
 
-  const handleQuantityChange = (productId, quantity) => {
-    setCartProducts((prevProducts) =>
-      prevProducts.map((item) =>
-        item._id === productId
-          ? { ...item, quantity: Math.max(1, quantity) } // Ensure quantity is at least 1
-          : item
-      )
-    );
+  const handleQuantityChange = async (productId, newQuantity) => {
+    if (newQuantity < 1) return;
+
+    try {
+      const response = await fetch('http://localhost:4000/api/updateAddToCartProduct', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ _id: productId, quantity: newQuantity }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setCartProducts((prevProducts) =>
+          prevProducts.map((item) =>
+            item._id === productId ? { ...item, quantity: newQuantity } : item
+          )
+        );
+      } else {
+        toast.error('Failed to update quantity: ' + data.message);
+      }
+    } catch (error) {
+      toast.error('Error updating quantity: ' + error.message);
+    }
+  };
+
+  const handleRemoveProduct = async (productId) => {
+    try {
+      const response = await fetch('http://localhost:4000/api/deleteAddToCartProduct', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${user.token}`,
+        },
+        body: JSON.stringify({ _id: productId }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setCartProducts((prevProducts) =>
+          prevProducts.filter((item) => item._id !== productId)
+        );
+        toast.success('Product removed from cart');
+      } else {
+        toast.error('Failed to remove product: ' + data.message);
+      }
+    } catch (error) {
+      toast.error('Error removing product: ' + error.message);
+    }
   };
 
   // Calculate total amount and item count
-  const totalAmount = cartProducts.reduce((total, item) => total + (item.productId.price * item.quantity), 0);
+  const totalAmount = cartProducts.reduce((total, item) => total + item.productId.price * item.quantity, 0);
   const totalItems = cartProducts.length;
 
   return (
@@ -91,7 +138,10 @@ const AddToCartProduct = () => {
                       +
                     </button>
                   </div>
-                  <button className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition-colors duration-300">
+                  <button
+                    onClick={() => handleRemoveProduct(item._id)}
+                    className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-500 transition-colors duration-300"
+                  >
                     Remove
                   </button>
                 </div>

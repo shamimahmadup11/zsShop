@@ -12,6 +12,7 @@ import AdminPortal from "./Components/AdminPortal";
 import CatagoryProducts from "./Components/CatagoryProducts";
 import ProductDetails from "./Components/ProductDetails";
 import AddToCartProduct from "./Components/AddToCartProduct";
+import SearchProduct from "./Components/SearchProduct";
 
 function App() {
   const dispatch = useDispatch();
@@ -94,6 +95,10 @@ function App() {
     {
       path: "/addToCart",
       element: <><Header /> <AddToCartProduct /> <Footer /> </>, 
+    },
+    {
+      path: "/search",
+      element: <><Header /> <SearchProduct /> <Footer /> </>, 
     },
   ]);
 

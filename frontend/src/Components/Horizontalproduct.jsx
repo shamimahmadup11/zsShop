@@ -43,7 +43,7 @@ const HorizontalProduct = ({ category, heading }) => {
               key={product._id}
               className="w-40 bg-white shadow-lg border border-gray-300 p-4 hover:border-red-600 transform hover:-translate-y-1 hover:shadow-xl transition duration-300"
             >
-              <Link to={"/product/" + product._id}>
+              <Link to={"/product/" + product._id}   onClick={()=>window.scroll({top:0 , behavior:"smooth" })}>
                 <div className="h-28 bg-gray-100 flex justify-center items-center overflow-hidden">
                   <img
                     src={product.images[0]}

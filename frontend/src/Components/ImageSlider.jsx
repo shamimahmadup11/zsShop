@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 
 const images = [
-  "https://m.media-amazon.com/images/I/61zAjw4bqPL._SX3000_.jpg",
-  "https://m.media-amazon.com/images/I/61lwJy4B8PL._SX3000_.jpg",
-  "https://m.media-amazon.com/images/I/71Ie3JXGfVL._SX3000_.jpg",
-  "https://m.media-amazon.com/images/I/61CiqVTRBEL._SX3000_.jpg"
+  "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/44fe68e438b997c9.jpeg?q=20",
+  "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/b229a95edd3af8bd.jpg?q=20",
+  "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/d9290fb51138d286.png?q=20",
+  "https://rukminim2.flixcart.com/fk-p-flap/1600/270/image/20a160ef30776af8.jpeg?q=20"
 ];
 
 const ImgSlider = () => {
@@ -24,7 +24,7 @@ const ImgSlider = () => {
   }, []);
 
   return (
-    <div className="relative w-full h-[60vh] md:h-[80vh] lg:h-[90vh] overflow-hidden mx-auto my-4 md:my-6 lg:my-8 rounded-lg shadow-lg">
+    <div className="relative w-full h-[50vh] md:h-[40vh] lg:h-[40vh] overflow-hidden mx-auto my-4 md:my-6 lg:my-8 rounded-lg shadow-lg">
       <img
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}

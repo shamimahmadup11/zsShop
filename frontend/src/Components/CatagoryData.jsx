@@ -36,10 +36,11 @@ const CategoryData = () => {
           : categoryProduct.map((product, index) => (
               <Link
                 to={"/catagoryProducts/" + product?.category}
-                className="cursor-pointer"
+                className="cursor-pointer "
+                onClick={()=>window.scroll({top:0 , behavior:"smooth"})}
                 key={product._id}
               >
-                <div className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden p-4 bg-slate-200 flex items-center justify-center">
+                <div   onClick={()=>window.scroll({top:0 , behavior:"smooth"})} className="w-14 h-14 md:w-16 md:h-16 rounded-full overflow-hidden p-4 bg-slate-200 flex items-center justify-center ">
                   {product.images && product.images.length > 0 ? (
                     <img
                       src={product.images[0]}

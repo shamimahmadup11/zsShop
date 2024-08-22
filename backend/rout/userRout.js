@@ -13,6 +13,9 @@ const productDetails=require("../controller/productDetailsById")
 const addToCartProduct=require("../controller/AddToCart")
 const countCartProduct=require("../controller/CountCartProduct")
 const cartProductview=require("../controller/AddToCartView")
+const updateAddToCartProduct=require("../controller/updateAddToCartProduct")
+const deleteAddToCartProduct=require("../controller/DeleteAddToCartProduct")
+const searchProduct=require("../controller/searchProduct")
 const router =express.Router()
 
 router.post("/api/login" , SigningController.login)
@@ -29,5 +32,7 @@ router.post("/api/productDetails" , productDetails)
 router.post("/api/addToCartProduct" ,Authtoken , addToCartProduct )
 router.get("/api/countProductItems" , Authtoken , countCartProduct)
 router.get("/api/cartProductview" , Authtoken ,cartProductview  )
-
+router.post("/api/updateAddToCartProduct" ,Authtoken ,updateAddToCartProduct )
+router.post("/api/deleteAddToCartProduct" ,Authtoken,deleteAddToCartProduct)
+router.get("/api/searchProduct", searchProduct)
 module.exports=router
