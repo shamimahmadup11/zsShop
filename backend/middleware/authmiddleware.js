@@ -1,5 +1,4 @@
 
-
 const jwt = require('jsonwebtoken');
 
 const userToken = async (req, res, next) => {
