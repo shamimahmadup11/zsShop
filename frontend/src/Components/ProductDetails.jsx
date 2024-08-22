@@ -19,7 +19,7 @@ const ProductDetails = () => {
 
   const fetchProductById = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/productDetails", {
+      const response = await fetch("https://zsshop.onrender.com/api/productDetails", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

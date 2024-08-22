@@ -46,7 +46,7 @@ const Modal = ({ isOpen, onClose, onSubmit, formData, setFormData }) => {
         return;
       }
   
-      const response = await fetch("http://localhost:4000/api/uploadProduct", {
+      const response = await fetch("https://zsshop.onrender.com/api/uploadProduct", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

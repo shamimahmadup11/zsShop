@@ -20,7 +20,7 @@ const router =express.Router()
 
 router.post("/api/login" , SigningController.login)
 router.post("/api/signup" , SigningController.signup)
-router.get("/api/userDetail" , Authtoken ,UserDetail)
+router.get("/api/userDetail" , Authtoken , UserDetail)
 router.get("/api/userLogOut" ,userLogout)
 router.get("/api/allUser" ,Authtoken,  AllUser)
 router.post('/api/usersUpdate', Authtoken,  updateUser);

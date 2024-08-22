@@ -8,7 +8,7 @@ const CategoryData = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:4000/api/getAllCatagoryProduct"
+        "https://zsshop.onrender.com/api/getAllCatagoryProduct"
       );
       const dataResponse = await response.json();
       setCategoryProduct(dataResponse.data);

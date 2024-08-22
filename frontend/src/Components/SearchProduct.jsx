@@ -18,7 +18,7 @@ const SearchProduct = () => {
       const searchQuery = new URLSearchParams(params.search).get("q") || "";
 
       try {
-        const response = await fetch(`http://localhost:4000/api/searchProduct`);
+        const response = await fetch(`https://zsshop.onrender.com/api/searchProduct`);
         if (!response.ok) {
           throw new Error("Failed to fetch products");
         }

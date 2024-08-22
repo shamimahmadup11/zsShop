@@ -10,7 +10,7 @@ const AddToCartProduct = () => {
     if (!user) return;
 
     try {
-      const response = await fetch('http://localhost:4000/api/cartProductview', {
+      const response = await fetch('https://zsshop.onrender.com/api/cartProductview', {
         method: 'GET',
         credentials: 'include',
         headers: {
@@ -39,7 +39,7 @@ const AddToCartProduct = () => {
     if (newQuantity < 1) return;
 
     try {
-      const response = await fetch('http://localhost:4000/api/updateAddToCartProduct', {
+      const response = await fetch('https://zsshop.onrender.com/api/updateAddToCartProduct', {
         method: 'POST',
         credentials: 'include',
         headers: {
@@ -67,7 +67,7 @@ const AddToCartProduct = () => {
 
   const handleRemoveProduct = async (productId) => {
     try {
-      const response = await fetch('http://localhost:4000/api/deleteAddToCartProduct', {
+      const response = await fetch('https://zsshop.onrender.com/api/deleteAddToCartProduct', {
         method: 'POST',
         credentials: 'include',
         headers: {

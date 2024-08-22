@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 const addToCart = async (e, id) => {
     try {
       // Fetch existing cart items to check if the item is already present
-      const cartResponse = await fetch("http://localhost:4000/api/cartProductview", {
+      const cartResponse = await fetch("https://zsshop.onrender.com/api/cartProductview", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -25,7 +25,7 @@ const addToCart = async (e, id) => {
         toast.info("Product already in cart.");
         return;
       }
-      const response = await fetch("http://localhost:4000/api/addToCartProduct", {
+      const response = await fetch("https://zsshop.onrender.com/addToCartProduct", {
         method: "POST",
         credentials: "include",
         headers: {

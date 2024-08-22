@@ -21,7 +21,7 @@ console.log(data.name)
     }
 
     try {
-      const response = await fetch("http://localhost:4000/api/signup", {
+      const response = await fetch("https://zsshop.onrender.com/api/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

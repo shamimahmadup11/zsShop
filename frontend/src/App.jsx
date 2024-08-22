@@ -19,7 +19,7 @@ function App() {
 
   const fetchUserAddToCart = async () => {
     try {
-      const dataResponse = await fetch("http://localhost:4000/api/countProductItems", {
+      const dataResponse = await fetch("https://zsshop.onrender.com/countProductItems", {
         method: "GET",
         credentials: 'include',
       });
@@ -36,7 +36,7 @@ function App() {
 
   const fetchUserDetails = async () => {
     try {
-      const response = await fetch('http://localhost:4000/api/userDetail', {
+      const response = await fetch('https://zsshop.onrender.com/api/userDetail', {
         method: 'GET',
         credentials: "include",
         headers: {

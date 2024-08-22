@@ -19,7 +19,7 @@ const Header = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const response = await fetch("http://localhost:4000/api/currentUser", {
+        const response = await fetch("https://zsshop.onrender.com/api/currentUser", {
           method: "GET",
           credentials: "include",
         });
@@ -38,7 +38,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/userLogOut", {
+      const response = await fetch("https://zsshop.onrender.com/api/userLogOut", {
         method: "GET",
         credentials: "include",
         headers: {
@@ -78,8 +78,8 @@ const Header = () => {
   };
 
   return (
-    <div className="bg-blue-600 max-w-screen-2xl container mx-auto md:px-20 px-8 h-16"> {/* Updated height */}
-      <div className="navbar flex items-center justify-between h-full"> {/* Set height to 100% */}
+    <div className="bg-blue-600 max-w-screen-2xl container mx-auto md:px-20 px-8 h-16">
+      <div className="navbar flex items-center justify-between h-full">
         <div className="navbar-start flex items-center">
           <Link
             to="/"
@@ -132,26 +132,23 @@ const Header = () => {
           </div>
 
           <div className="hidden md:flex gap-8 items-center">
-            {user && (
-              <div className="relative inline-block"> {/* Hide cart until user is logged in */}
-                <Link to="/addToCart">
-                  <FaCartPlus className="h-6 w-6 text-gray-200 cursor-pointer" />
-                  <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                    {cartProductCount || 0}
-                  </span>
-                </Link>
-              </div>
-            )}
-
-            <div className="relative">
-              {user ? (
-                <>
+            {user ? (
+              <>
+                <div className="relative inline-block">
+                  <Link to="/addToCart">
+                    <FaCartPlus className="h-6 w-6 text-gray-200 cursor-pointer" />
+                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
+                      {cartProductCount || 0}
+                    </span>
+                  </Link>
+                </div>
+                <div className="relative">
                   <CgProfile
                     className="h-5 w-5 cursor-pointer text-gray-200"
                     onClick={toggleDropdown}
                   />
                   {dropdownOpen && (
-                    <div className="absolute right-0 mt-2 w-48 bg-black  border rounded-lg shadow-lg z-50">
+                    <div className="absolute right-0 mt-2 w-48 bg-black border rounded-lg shadow-lg z-50">
                       <Link
                         to="/admin/*"
                         className="block px-4 py-2 text-gray-100 hover:bg-gray-800"
@@ -183,70 +180,67 @@ const Header = () => {
                       </button>
                     </div>
                   )}
-                </>
-              ) : (
-                <Link
-                  to="/login"
-                  className="bg-black text-white p-2 m-2 rounded hover:bg-slate-800 duration-300 cursor-pointer"
-                >
-                  Login
-                </Link>
-              )}
-            </div>
+                </div>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className="bg-black text-white p-2 m-2 rounded hover:bg-slate-800 duration-300 cursor-pointer"
+              >
+                Login
+              </Link>
+            )}
           </div>
         </div>
       </div>
 
       {/* Mobile Menu */}
-{menuOpen && (
-  <div
-    className="md:hidden bg-black shadow-lg rounded-lg py-4 z-50 fixed top-16 left-0 right-0"
-    style={{ zIndex: 9999 }} // Inline style for higher z-index
-  >
-    <div className="flex flex-col items-start space-y-2 px-4 ">
-      {user && (
-        <>
-          <Link
-            to="/addToCart"
-            className="flex items-center space-x-2 text-gray-100"
-            onClick={() => setMenuOpen(false)}
-          >
-            <FaCartPlus className="h-5 w-5" />
-            <span>Cart ({cartProductCount || 0})</span>
-          </Link>
-          <Link
-            to="/profile"
-            className="flex items-center space-x-2 text-gray-100"
-            onClick={() => setMenuOpen(false)}
-          >
-            <CgProfile className="h-5 w-5" />
-            <span>Profile</span>
-          </Link>
-          <button
-            onClick={() => {
-              handleLogout();
-              setMenuOpen(false);
-            }}
-            className="flex items-center space-x-2 text-gray-100"
-          >
-            <span>Logout</span>
-          </button>
-        </>
-      )}
-
-      {!user && (
-        <Link
-          to="/login"
-          className="bg-black text-white p-2 m-2 rounded hover:bg-slate-800 duration-300 cursor-pointer w-full text-center"
-          onClick={() => setMenuOpen(false)}
+      {menuOpen && (
+        <div
+          className="md:hidden bg-black shadow-lg rounded-lg py-4 z-50 fixed top-16 left-0 right-0"
+          style={{ zIndex: 9999 }} // Inline style for higher z-index
         >
-          Login
-        </Link>
+          <div className="flex flex-col items-start space-y-2 px-4">
+            {user ? (
+              <>
+                <Link
+                  to="/addToCart"
+                  className="flex items-center space-x-2 text-gray-100"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <FaCartPlus className="h-5 w-5" />
+                  <span>Cart ({cartProductCount || 0})</span>
+                </Link>
+                <Link
+                  to="/profile"
+                  className="flex items-center space-x-2 text-gray-100"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  <CgProfile className="h-5 w-5" />
+                  <span>Profile</span>
+                </Link>
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setMenuOpen(false);
+                  }}
+                  className="flex items-center space-x-2 text-gray-100"
+                >
+                  <span>Logout</span>
+                </button>
+              </>
+            ) : (
+              <Link
+                to="/login"
+                className="bg-black text-white p-2 m-2 rounded hover:bg-slate-800 duration-300 cursor-pointer w-full text-center"
+                onClick={() => setMenuOpen(false)}
+              >
+                Login
+              </Link>
+            )}
+          </div>
+        </div>
       )}
-    </div>
-  </div>
-)}
-
     </div>
   );
 };
