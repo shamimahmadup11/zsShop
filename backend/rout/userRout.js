@@ -18,12 +18,13 @@ const deleteAddToCartProduct=require("../controller/DeleteAddToCartProduct")
 const searchProduct=require("../controller/searchProduct")
 const router =express.Router()
 
+
 router.post("/api/login" , SigningController.login)
 router.post("/api/signup" , SigningController.signup)
 router.get("/api/userDetail" , Authtoken , UserDetail)
 router.get("/api/userLogOut" ,userLogout)
 router.get("/api/allUser" ,Authtoken,  AllUser)
-router.post('/api/usersUpdate', Authtoken,  updateUser);
+router.post('/api/usersUpdate', Authtoken,  updateUser)
 router.post("/api/uploadProduct" , uploadProduct)
 router.get("/api/getAllProducts" , allProducts)
 router.get("/api/getAllCatagoryProduct" , allCatagoryProducts )

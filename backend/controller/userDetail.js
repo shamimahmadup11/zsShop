@@ -3,8 +3,8 @@ const UserModel = require("../model/UserModel");
 const UserDetail = async (req, res) => {
     try {
         // Extract the user ID from the request object
-        const userId = req.user?.id;
-
+        const userId = req.user;
+              console.log(userId)
         // Check if the user ID is present
         if (!userId) {
             return res.status(400).json({

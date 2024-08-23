@@ -19,9 +19,13 @@ function App() {
 
   const fetchUserAddToCart = async () => {
     try {
-      const dataResponse = await fetch("https://zsshop.onrender.com/countProductItems", {
+      const dataResponse = await fetch("https://zsshop.onrender.com/api/countProductItems", {
         method: "GET",
         credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+          },
+
       });
 
       const dataApi = await dataResponse.json();
