@@ -11,7 +11,7 @@ const app = express();
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "http://localhost:5173", // Replace with your frontend's domain
+    origin: "https://zs-shop.vercel.app", // Replace with your frontend's domain
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true, // Allow credentials such as cookies
 }));
