@@ -5,7 +5,7 @@ About the Project
 Tech Stack
 Features
 Setup and Installation
-Usage
+Usage 
 API Endpoints
 Contributing
 License
