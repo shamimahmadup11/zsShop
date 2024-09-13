@@ -27,11 +27,17 @@ const login = async (req, res) => {
     const token = jwt.sign(tokenData, process.env.TOKEN_SECRET_KEY, { expiresIn: '8h' });
 
     // Send response with token
-    const tokenOption={
-        httpOnly:true,
-        secure:true
-    }
-    res.cookie("token" , token ,tokenOption).json({
+    // const tokenOption={
+    //     httpOnly:true,
+    //     secure:true
+    // }
+    const options = {
+      sameSite: 'lax',
+      secure: process.env.NODE_ENV === 'production',
+      httpOnly: true,
+      path:'/'
+    };
+    res.cookie("token" , token ,options).json({
       success: true,
       message: "Logged in successfully",
       token // Include the token in the response
@@ -44,8 +50,6 @@ const login = async (req, res) => {
     });
   }
 };
-
-
 
 
 const signup = async (req, res) => {
