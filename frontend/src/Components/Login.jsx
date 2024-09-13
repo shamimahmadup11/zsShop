@@ -21,32 +21,30 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     try {
-        const response = await fetch("https://zsshop.onrender.com/api/login", {
-            method: "POST",
-            // credentials: "include", // Include credentials (cookies)
-            headers: {
-                "Content-Type": "application/json",
+        const response = await axios.post(
+            "https://zsshop.onrender.com/api/login", 
+            data, 
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                withCredentials: true // Include credentials (cookies) if needed
+            }
+        );
 
-            },
-            body: JSON.stringify(data),
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-            console.log("Login successful:", result);
+        if (response.status === 200) {
+            console.log("Login successful:", response.data);
             toast.success("Login successful!");
             navigate("/"); // Fixed typo from `navigat` to `navigate`
             window.location.reload();
         } else {
-            console.error("Login failed:", result.message);
-            toast.error(`Login failed: ${result.message}`);
+            console.error("Login failed:", response.data.message);
+            toast.error(`Login failed: ${response.data.message}`);
         }
     } catch (error) {
-        console.error("Error during login:", error);
-        toast.error("An error occurred during login. Please try again.");
+        console.error("Error during login:", error.response?.data || error.message);
+        toast.error(`An error occurred: ${error.response?.data?.message || error.message}`);
     }
 };
 
