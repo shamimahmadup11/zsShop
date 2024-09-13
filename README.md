@@ -5,7 +5,7 @@ About the Project
 Tech Stack
 Features
 Setup and Installation
-Usage
+Usage 
 API Endpoints
 Contributing
 License
@@ -44,6 +44,7 @@ npm install
 cd ..
 Environment Variables:
 Create a .env file in the root directory and add the following variables:
+hosted link :https://zs-shop.vercel.app/
 
 plaintext
 Copy code
