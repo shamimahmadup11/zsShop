@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 import { toast } from "react-toastify"; // Import toast
+import axios from 'axios'
 
 const LoginPage = () => {
   const [data, setData] = useState({
@@ -24,7 +25,7 @@ const LoginPage = () => {
     try {
         const response = await fetch("https://zsshop.onrender.com/api/login", {
             method: "POST",
-            credentials: "include", // Include credentials (cookies)
+            // credentials: "include", // Include credentials (cookies)
             headers: {
                 "Content-Type": "application/json",
 
