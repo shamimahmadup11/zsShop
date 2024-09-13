@@ -17,7 +17,7 @@ app.use(cookieParser());
 // }));
 
 const allowedOrigins = [
-    'http://localhost:5173',
+    'http://localhost:5174',
    'https://zs-shop.vercel.app'
   ];
   
@@ -32,9 +32,10 @@ const allowedOrigins = [
     },
     credentials: true
   };
+
   
   app.use(cors(corsOptions));
-
+app.options("*", cors(corsOptions));
 app.use(express.json());
 app.use(userRouter);
 
